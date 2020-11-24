@@ -24,7 +24,7 @@ class LinKedList:
         print("")
     def tail (self):
         curr_node = self.__head
-        while curr_node !=None:
+        while curr_node.siguiente !=None:
             curr_node=curr_node.siguiente
         return curr_node
     def remove (self,value):
@@ -44,10 +44,15 @@ class LinKedList:
         nuevo=Nodo(value,self.__head)
         self.__head = nuevo
     def get (self,posicion = None):#por defecto regresa el ultimo
-        contador=0
+        
         dato = None
         if posicion== None:
             dato = self.tail().data
         else:
-            pass
-        return dato
+            curr_node=self.__head
+            while curr_node.data == posicion:
+                contador=0
+                contador=contador + 1
+                dato=contador
+            
+            return dato
