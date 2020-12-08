@@ -20,8 +20,8 @@ class laberintoADT:
     """
     establese la entrada poniendo una e en la matriz ,verificar limites
     """
-    def set_entrada(self,rens,cols):
-        #terminar la validacion de las cordenadas
+    def set_entrada(self,rens,cols):#terminar la validacion de las cordenadas
+
         self.__laberinto.set_item(rens,cols,'E')
         """
         estableser salida dentro de los limites perifericos de la matrix
@@ -35,14 +35,42 @@ class laberintoADT:
         encontrado=False
         for renglon in range(self.__laberinto.get_num_rows()):
             for columna in range (self.__laberinto.get_num_cols()):
-                tope=self.__camino.peek()#tupla
+                
                 if self.__laberinto.get_item(renglon,columna)=='E':
-                    self.__camino.push(tule(renglon,columna))
+                    self.__camino.push((renglon,columna))
                     encontrado=True
         return encontrado
     def set__previa(self,pos_previa):
         self.__previa = pos_previa
     def get__previa(self):
         return self.__previa
+    def imprimir_camino(self):
+        self.__camino.to_string()
+    def get_pos_actual(self):
+        return self.__camino.peek()
     def resolver_labarinto(self):
-        #aplicar reglas
+        actual=self.__camino.peek()
+        # buscar izquiertda
+        #agregar validaciones de laberintos
+        if actual[1]-1 !=-1\
+        and self.__laberinto.get_item(actual[0],actual[1]-1)== '0' \
+        and self.get__previa() != (actual[0],actual[1]-1)\
+        and self.__laberinto.get_item(actual[0],actual[1]-1)!= 'X':
+            self.set__previa(actual)
+            self.__camino.push((actual[0],actual[1]-1))
+        elif actual[0]-1 !=-1\
+        and self.__laberinto.get_item(actual[0]-1,actual[1])== '0' \
+        and self.get__previa() != (actual[0]-1,actual[1])\
+        and self.__laberinto.get_item(actual[0]-1,actual[1])!= 'X':
+            self.set__previa(actual)
+            self.__camino.push((actual[0]-1,actual[1]))
+        # buscar ala derecha
+        elif 1==0 :
+            pass
+
+        elif 1==0 :
+            pass
+        else:
+            self.__laberinto.set_item(actual[0] , actual[1], 'X')
+            self.__previa=actual
+            self.__camino.pop()
