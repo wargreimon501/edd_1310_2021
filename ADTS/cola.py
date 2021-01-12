@@ -31,8 +31,9 @@ class BoundedPriorityQueue:
     def enqueue(self,priorida,elem):
         if priorida < len(self.__data) and priorida >= 0:
             self.__data[priorida].enqueue(elem)
+            self.__size +=1
     def dequeue(self):
-        if not nivel.is_empty():
+        if not self.is_empty():
             for nivel in self.__data:
                 if not nivel.is_empty():
                     self.__size -= 1
