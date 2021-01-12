@@ -1,0 +1,12 @@
+from cola_no_acotada import Priorityqueue
+j = Priorityqueue()
+j.enqueue("y joto",6)
+j.enqueue("po",3)
+j.enqueue("o",0)
+j.enqueue("puto",1)
+j.enqueue("roberto",7)
+print(j.is_empty())
+print(j.length())
+print(j.to_string())
+j.dequeue()
+print(j.to_string())
