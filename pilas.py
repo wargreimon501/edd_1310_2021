@@ -14,8 +14,6 @@ class Stack:
         self.__data.append(value)
     def peek(self):
         return self.__data[len(self.__data)- 1 ]
-    def elem(self):
-        return self.__data[len(self.__data)]
     def to_string (self):
         for item in self.__data[::-1]:
             print(f"| {item} |")
