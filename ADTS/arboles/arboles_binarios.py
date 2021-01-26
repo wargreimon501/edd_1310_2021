@@ -60,7 +60,6 @@ class BinarySearchTree:
             return None
         else:
             return self.__search(self.__root, value)
-
     def __search(self, nodo , value):
         if nodo == None: # vacio?
             return None
@@ -73,9 +72,37 @@ class BinarySearchTree:
         else:
             return self.__search(nodo.right,value)
     def remove (self,value):
-        encontrado=self.search(value)
-        if encontrado.left==None and encontrado.right:
-            emcontradp=None
-        elif (encontrado != None and encontrado.right== None)  or \
-             (encontrado == None and encontrado.right != None):
-             print("a eliminar ",encontrado.data)
+        if self.__root == None:
+            print("Nada que eliminar")
+        else:
+            self.__remove(None,None,self.__root,value)
+    def __remove(self,padre_hi,padre_hd,actual , value):
+        if actual == None:
+            print("Caso base ")
+            return None
+        elif actual.data==value:
+            print("Encontrado", actual.data)
+            #caso 1:hoja
+            if actual.left==None and actual.right==None:
+                if padre_hi != None:
+                    padre_hi=None
+                else:
+                    padre_hd.right=None
+            #caso2:con un hijo
+
+            if (actual.left != None and actual.right == None) or (actual.left == None and actual.right != None):
+                print("es un nodo con un hijo ",actual.data)
+                if actual.left != None:
+                    actual.data = actual.left.data
+                    actual.left=None
+                else:
+                    actual.data = actual.right.data
+                    actual.right=None
+            #caso3:con los dos hijos
+            #return actual
+        elif value < actual.data:
+            print("Buscas a la izquierda ")
+            self.__remove(actual ,None,actual.left,value)
+        else:
+            print("buscar a la derecha")
+            self.__remove(None ,actual,actual.right,value)
